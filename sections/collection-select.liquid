@@ -1,5 +1,5 @@
-<!-- <link rel="stylesheet" href="{{ 'section-collection-select.css' | asset_url | stylesheet_tag }}" > -->
-<style media="screen">
+{{ 'section-collection-select.css' | asset_url | stylesheet_tag }}
+<!-- <style media="screen">
 /* General Section Styles */
 .collection-selector {
   padding-bottom: 10px;
@@ -191,43 +191,16 @@
   }
 }
 
-</style>
+</style> -->
 
 <div class="page-width">
   <div class="collection-selector">
     <div class="selector-mobile-nav-container">
-      <div class="selector-mobile-nav">
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="menu-icon">{% render 'icon-hamburger' %}</label>
-        <div class="slideout-sidebar">
-          <ul>
-            {% for block in section.blocks %}
-              {% if block.type == 'featured_collection' %}
-              <li class="selector-nav-item" data-collection-url="{{block.settings.collection.url}}">
-                  {{block.settings.collection.title}}
-              </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
+      {% render 'selector-mobile-nav' %}
     </div>
-
     <div class="selector-nav_container">
-      <div class="selector-indicator">
-        <div class="indicator-pill">
-          <span id="indicator-pill-text"> </span>
-        </div>
-      </div>
-      <ul class="selector-nav">
-        {% for block in section.blocks %}
-        	{% if block.type == 'featured_collection' %}
-          <li class="selector-nav-item" data-collection-url="{{block.settings.collection.url}}">
-              {{block.settings.collection.title}}
-          </li>
-          {% endif %}
-        {% endfor %}
-      <ul>
+      {% render 'selector-nav-indicator' %}
+      {% render 'selector-nav' %}
     </div>
   </div>
   <div id="selector-banner"></div>

@@ -1,11 +1,4 @@
 
-// fetch('/collections/bases?section_id=main-collection-product-grid')
-// fetch('/collections/bases?section_id=main-list-collections')
-// //.fetch('/collections/bases?section_id=featured_collection')
-// //shopify-section-template--14329027166298__1643933680b86823bb
-// .then(response => response.text())
-// .then(data => gridContainer.innerHTML = `<div>`+ data + "</div>");
-
 const selectorItems = document.querySelectorAll('.selector-nav-item');
 const indicatorPill = document.getElementById('indicator-pill-text');
 const gridContainer = document.getElementById('selector-grid-container');
@@ -24,34 +17,19 @@ const getBanner = (url) => {
 const getUrlAttr = (url) => {
   let queryString;
 
-  if (url == '/collections/all') {
-    queryString = `${url}?section_id=main-list-collections`;
-    selectorBanner.innerHTML = '';
-  } else {
-    getBanner(url);
-    queryString = `${url}?section_id=main-collection-product-grid`;
-  }
+  queryString = `${url}?section_id=main-collection-product-grid`;
 
   fetch(queryString).then(response => response.text())
   .then(data => gridContainer.innerHTML = `<div>`+ data + `</div>`);
 
-  window.history.pushState('','', url)
+  getBanner(url);
+
+  window.history.pushState('','', url);
 };
 
-// gridContainer.innerHTML = '';
-// selectorBanner.innerHTML = '';
-
-// for (var i = 0; i < elements.length; i++) {
-//     elements[i].addEventListener('click', myFunction, false);
-// }
-
-// Array.from(selectorItems).forEach(function(item) {
-//    item.addEventListener('click', getUrlAttr);
-//  });
-
-getUrlAttr('/collections/all');
 
 selectorItems.forEach(el => el.addEventListener('click', event => {
+  indicatorPill.style.visibility = 'visible';
 
   document.getElementById('menu-toggle').checked = false;
 
@@ -62,7 +40,7 @@ selectorItems.forEach(el => el.addEventListener('click', event => {
   event.target.classList.add('selected-collection');
 
   if (event.target.innerText == 'ALL') {
-    indicatorPill.innerText = `See All ${'Collections'}`;
+    indicatorPill.innerText = `See All ${'Items'}`;
   } else {
    indicatorPill.innerText = `See All ${event.target.innerText}`;
  }
@@ -71,3 +49,6 @@ selectorItems.forEach(el => el.addEventListener('click', event => {
 
  getUrlAttr(urlAttr);
 }));
+
+getUrlAttr('/collections/all');
+indicatorPill.innerText = `See All ${'Items'}`;

@@ -1,0 +1,15 @@
+<div class="selector-mobile-nav">
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">{% render 'icon-hamburger' %}</label>
+  <div class="slideout-sidebar">
+    <ul>
+      {% for block in section.blocks %}
+        {% if block.type == 'featured_collection' %}
+        <li class="selector-nav-item flex-centered" data-collection-url="{{block.settings.collection.url}}" {{ block.shopify_attributes }}>
+            {{block.settings.collection.title}}
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
