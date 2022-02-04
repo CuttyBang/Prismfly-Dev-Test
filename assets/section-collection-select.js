@@ -31,7 +31,6 @@ const getUrlAttr = (url) => {
 
 
 selectorItems.forEach(el => el.addEventListener('click', event => {
-  indicatorPill.style.visibility = 'visible';
 
   document.getElementById('menu-toggle').checked = false;
 
@@ -48,7 +47,7 @@ selectorItems.forEach(el => el.addEventListener('click', event => {
      indicatorPill.innerText = `See All ${event.target.innerText}`;
    }
  }
- 
+
  let urlAttr = event.target.getAttribute('data-collection-url');
 
  getUrlAttr(urlAttr);

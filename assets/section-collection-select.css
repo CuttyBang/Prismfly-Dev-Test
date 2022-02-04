@@ -165,6 +165,10 @@
     color: rgba(244,244,244,1);
   }
 
+  .selector-nav {
+    padding-top: 10px;
+  }
+
   .selector-nav-item {
     width: 110px;
   }
