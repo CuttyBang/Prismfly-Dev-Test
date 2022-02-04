@@ -145,6 +145,10 @@
     border-bottom: 3px solid #094a8c;
   }
 
+  .selector-nav {
+    padding-top: 10px;
+  }
+
   .selector-nav-item {
     width: 150px;
   }
@@ -163,10 +167,6 @@
   .selected-collection {
     background: rgba(43, 88, 177, 0.10);
     color: rgba(244,244,244,1);
-  }
-
-  .selector-nav {
-    padding-top: 10px;
   }
 
   .selector-nav-item {
