@@ -35,7 +35,7 @@ selectorItems.forEach(el => el.addEventListener('click', event => {
   document.getElementById('menu-toggle').checked = false;
 
   selectorItems.forEach(item => {
-      item.classList.remove('selected-collection')
+      item.classList.remove('selected-collection');
   });
 
   event.target.classList.add('selected-collection');
@@ -48,12 +48,24 @@ selectorItems.forEach(el => el.addEventListener('click', event => {
    }
  }
 
- let urlAttr = event.target.getAttribute('data-collection-url');
+ let urlAttr = event.target.getAttribute('data-collectionurl');
 
  getUrlAttr(urlAttr);
 }));
 
-getUrlAttr('/collections/all');
-if (indicatorPill) {
-  indicatorPill.innerText = `See All ${'Items'}`;
+
+function init() {
+  selectorItems.forEach(item => {
+    if (item.dataset.collectionurl == '/collections/all') {
+      item.classList.add('selected-collection');
+    }
+  });
+
+  getUrlAttr('/collections/all');
+
+  if (indicatorPill) {
+    indicatorPill.innerText = `See All ${'Items'}`;
+  }
 }
+
+document.onload = init;
