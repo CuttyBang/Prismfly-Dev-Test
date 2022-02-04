@@ -7,7 +7,7 @@ const selectorBanner = document.getElementById('selector-banner');
 
 
 const getBanner = (url) => {
-  let bannerQuery = `${url}?section_id=main-collection-banner`;
+  let bannerQuery = `${url}?section_id=selector-banner`;
 
   fetch(bannerQuery).then(response => response.text())
   .then(data => selectorBanner.innerHTML = `<div>`+ data + `</div>`);
