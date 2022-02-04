@@ -5,7 +5,7 @@
     <ul>
       {% for block in section.blocks %}
         {% if block.type == 'featured_collection' %}
-        <li class="selector-nav-item flex-centered" data-collectionurl="{{block.settings.collection.url}}" {{ block.shopify_attributes }}>
+        <li class="selector-nav-item" data-collectionurl="{{block.settings.collection.url}}" {{ block.shopify_attributes }}>
             {{block.settings.collection.title}}
         </li>
         {% endif %}
