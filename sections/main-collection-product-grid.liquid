@@ -22,15 +22,15 @@
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding">
-  
-  <!-- {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+
+  {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
     {{ 'component-facets.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 
     <div class="page-width" id="main-collection-filters" data-id="{{ section.id }}">
       {% render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
     </div>
-  {%- endif -%} -->
+  {%- endif -%}
 
   <div id="ProductGridContainer">
     {%- paginate collection.products by section.settings.products_per_page -%}
