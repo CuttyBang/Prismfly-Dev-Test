@@ -22,7 +22,9 @@ const getUrlAttr = (url) => {
   fetch(queryString).then(response => response.text())
   .then(data => gridContainer.innerHTML = `<div>`+ data + `</div>`);
 
-  getBanner(url);
+  if(selectorBanner) {
+    getBanner(url);
+  }
 
   window.history.pushState('','', url);
 };
@@ -39,16 +41,20 @@ selectorItems.forEach(el => el.addEventListener('click', event => {
 
   event.target.classList.add('selected-collection');
 
-  if (event.target.innerText == 'ALL') {
-    indicatorPill.innerText = `See All ${'Items'}`;
-  } else {
-   indicatorPill.innerText = `See All ${event.target.innerText}`;
+  if (indicatorPill) {
+    if (event.target.innerText == 'ALL') {
+      indicatorPill.innerText = `See All ${'Items'}`;
+    } else {
+     indicatorPill.innerText = `See All ${event.target.innerText}`;
+   }
  }
-
+ 
  let urlAttr = event.target.getAttribute('data-collection-url');
 
  getUrlAttr(urlAttr);
 }));
 
 getUrlAttr('/collections/all');
-indicatorPill.innerText = `See All ${'Items'}`;
+if (indicatorPill) {
+  indicatorPill.innerText = `See All ${'Items'}`;
+}
