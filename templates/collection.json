@@ -68,7 +68,7 @@
       ],
       "settings": {
         "show_pill": false,
-        "show_banner": false
+        "show_banner": true
       }
     }
   },
