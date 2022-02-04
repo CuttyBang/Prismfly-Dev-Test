@@ -48,7 +48,7 @@ selectorItems.forEach(el => el.addEventListener('click', event => {
    }
  }
 
- let urlAttr = event.target.getAttribute('data-collection-url');
+ let urlAttr = event.target.getAttribute('data-collectionurl');
 
  getUrlAttr(urlAttr);
 }));
