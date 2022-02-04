@@ -45,12 +45,26 @@
           "settings": {
             "collection": "bedroom"
           }
+        },
+        "c9664e97-cd63-4a81-8e40-0e66e74c4126": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mattresses"
+          }
+        },
+        "097f4723-7b4d-48c0-8955-99466b03fcc1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "all"
+          }
         }
       },
       "block_order": [
         "1644004987bffc2343-0",
         "1644004987bffc2343-1",
-        "1644004987bffc2343-2"
+        "1644004987bffc2343-2",
+        "c9664e97-cd63-4a81-8e40-0e66e74c4126",
+        "097f4723-7b4d-48c0-8955-99466b03fcc1"
       ],
       "settings": {
       }
