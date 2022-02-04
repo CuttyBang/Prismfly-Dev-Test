@@ -21,7 +21,7 @@
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding">
+<!-- <div class="section-{{ section.id }}-padding">
   {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
     {{ 'component-facets.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
@@ -45,7 +45,7 @@
         </div>
       {%- else -%}
         <div class="collection page-width">
-          <div class="loading-overlay gradient"></div>
+          <div class="loading-overlay gradient"></div> -->
 
           <ul id="product-grid" data-id="{{ section.id }}" class="
             grid grid--2-col product-grid
