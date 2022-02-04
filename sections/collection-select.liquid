@@ -1,0 +1,280 @@
+<!-- <link rel="stylesheet" href="{{ 'section-collection-select.css' | asset_url | stylesheet_tag }}" > -->
+<style media="screen">
+/* General Section Styles */
+.collection-selector {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+/* Mobile Nav */
+
+#menu-toggle {
+  display: none;
+}
+
+.selector-mobile-nav {
+  display: block;
+  position: relative;
+  top: 0;
+}
+
+.slideout-sidebar {
+  position: absolute;
+  top: 0;
+  right: -200px;
+  z-index: 98;
+  width: 175px;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 20px;
+  background-color: #212121;
+  transition: all 300ms ease-in-out;
+}
+
+.slideout-sidebar ul {
+  list-style: none;
+  text-align: center;
+  max-width: 100px;
+  margin: 30px auto 0;
+  padding: 0;
+}
+
+.slideout-sidebar ul li {
+  cursor: pointer;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(244,244,244,0.4);
+  color: rgba(244,244,244,0.7);
+}
+
+.slideout-sidebar ul li:last-child {
+  border-bottom: 0;
+}
+
+.slideout-sidebar ul li:hover {
+  color: rgba(244,244,244,1);
+}
+
+.menu-icon svg {
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  z-index: 99;
+  transition: all 300ms ease-in-out;
+}
+
+#menu-toggle:checked ~ .slideout-sidebar {
+  right: -15px;
+}
+
+#menu-toggle:checked + .menu-icon svg {
+  right: 130px;
+  color: #fafafa;
+}
+
+/* Desktop Nav */
+
+.selector-nav_container {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.selector-indicator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0 20px;
+}
+
+.indicator-pill {
+  /* width: 40%; */
+  background: #094a8c;
+  border-radius: 100px;
+  padding: 5px 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.indicator-pill span {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.selector-nav {
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selector-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  color: #cbcccd;
+}
+
+.selector-nav-item:hover {
+  color: #094a8c;
+  border-bottom: 3px solid #094a8c;
+}
+
+
+/* Media Queries */
+
+@media only screen and (min-width: 800px) {
+  .selector-mobile-nav-container {
+    display: none;
+  }
+
+  .selector-nav_container {
+    display: flex;
+  }
+
+  .selected-collection {
+    color: #094a8c;
+    border-bottom: 3px solid #094a8c;
+  }
+
+  .selector-nav-item {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .collection-selector {
+    padding-bottom: 20px;
+    border-bottom: none;
+  }
+
+  .selector-nav_container {
+    display: none;
+  }
+
+  .selected-collection {
+    background: rgba(43, 88, 177, 0.10);
+    color: rgba(244,244,244,1);
+  }
+
+  .selector-nav-item {
+    width: 110px;
+  }
+}
+
+@media only screen and (min-width: 780px) and (max-width: 799px)  {
+  .slideout-sidebar {
+    right: -200px;
+  }
+
+  .selector-nav_container {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1000px)  {
+  .selector-nav-item {
+    width: 16.66%;
+  }
+
+  .selector-nav-item span {
+    font-size: 1.5rem
+  }
+}
+
+</style>
+
+<div class="page-width">
+  <div class="collection-selector">
+    <div class="selector-mobile-nav-container">
+      <div class="selector-mobile-nav">
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon">{% render 'icon-hamburger' %}</label>
+        <div class="slideout-sidebar">
+          <ul>
+            {% for block in section.blocks %}
+              {% if block.type == 'featured_collection' %}
+              <li class="selector-nav-item" data-collection-url="{{block.settings.collection.url}}">
+                  {{block.settings.collection.title}}
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="selector-nav_container">
+      <div class="selector-indicator">
+        <div class="indicator-pill">
+          <span id="indicator-pill-text"> </span>
+        </div>
+      </div>
+      <ul class="selector-nav">
+        {% for block in section.blocks %}
+        	{% if block.type == 'featured_collection' %}
+          <li class="selector-nav-item" data-collection-url="{{block.settings.collection.url}}">
+              {{block.settings.collection.title}}
+          </li>
+          {% endif %}
+        {% endfor %}
+      <ul>
+    </div>
+  </div>
+  <div id="selector-banner"></div>
+  <div id="selector-grid-container"></div>
+</div>
+
+<script src="{{ 'section-collection-select.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+    "name": "Collection Selector",
+    "class": "section",
+    "max_blocks": 6,
+    "blocks": [
+      {
+        "type": "featured_collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collections Selector",
+        "blocks": [
+          {
+            "type": "featured_collection"
+          },
+          {
+            "type": "featured_collection"
+          },
+          {
+            "type": "featured_collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
