@@ -67,6 +67,8 @@
         "097f4723-7b4d-48c0-8955-99466b03fcc1"
       ],
       "settings": {
+        "show_pill": false,
+        "show_banner": false
       }
     }
   },
